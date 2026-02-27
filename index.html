@@ -1,15 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>PawFun Entertainment - New Game Coming Soon</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odday - PawFun Entertainment</title>
     <style>
-        body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; padding-top: 100px; }
-        h1 { font-size: 3em; color: #ff4757; }
-        p { font-size: 1.5em; }
+        /* 基础样式复位 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: radial-gradient(circle at center, #2c3e50 0%, #000000 100%);
+            color: #fff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* 氛围光影动画 */
+        .bg-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 71, 87, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* 主容器 */
+        .container {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            max-width: 600px;
+            width: 90%;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        /* 工作室名称 */
+        .studio-name {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #ff4757;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* 游戏标题样式 */
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff 30%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        /* 描述文字 */
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* 呼吁行动按钮 (预约) */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #ff4757;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 71, 87, 0.6);
+            background: #ff6b81;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 底部社交/版权 */
+        footer {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.8rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
-    <h1>Odday Game</h1>
-    <p>正在开发中，敬请期待...</p>
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <div class="studio-name">PawFun Entertainment 呈现</div>
+        <h1>ODDAY</h1>
+        <p>一个关于勇气与探索的全新世界。<br>
+           首个官方预告片即将发布。</p>
+        
+        <button class="cta-button" onclick="alert('感谢关注！预约系统即将开启。')">立即预约测试</button>
+    </div>
+
+    <footer>
+        &copy; 2026 PawFun Entertainment LLC. All Rights Reserved.
+    </footer>
 </body>
 </html>
