@@ -33,7 +33,8 @@
             -webkit-user-drag: none;
         }
 
-        button {
+        button,
+        input {
             font: inherit;
         }
 
@@ -234,11 +235,14 @@
             border: 0;
         }
 
-        .qr-modal[hidden] {
+        /* Shared modal */
+        .alpha-modal[hidden],
+        .success-modal[hidden] {
             display: none;
         }
 
-        .qr-modal {
+        .alpha-modal,
+        .success-modal {
             position: fixed;
             inset: 0;
             z-index: 30;
@@ -247,28 +251,45 @@
             padding: 20px;
         }
 
-        .qr-backdrop {
+        .alpha-backdrop,
+        .success-backdrop {
             position: absolute;
             inset: 0;
-            background: rgba(10, 25, 40, 0.58);
-            backdrop-filter: blur(8px);
+            background: rgba(10, 25, 40, 0.52);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
-        .qr-panel {
+        .alpha-panel,
+        .success-panel {
             position: relative;
             z-index: 1;
-            width: min(92vw, 420px);
-            padding: 26px 22px 20px;
-            border-radius: 26px;
-            background: rgba(255, 255, 255, 0.96);
-            box-shadow: 0 24px 70px rgba(10, 24, 39, 0.28);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.86);
+            border: 1px solid rgba(255, 255, 255, 0.78);
+            box-shadow:
+                0 24px 70px rgba(10, 24, 39, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
             text-align: center;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
         }
 
-        .qr-close {
+        .alpha-panel {
+            width: min(92vw, 430px);
+            padding: 28px 22px 22px;
+        }
+
+        .success-panel {
+            width: min(92vw, 360px);
+            padding: 28px 22px 22px;
+        }
+
+        .alpha-close,
+        .success-close {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 12px;
+            right: 12px;
             width: 40px;
             height: 40px;
             border: 0;
@@ -278,32 +299,125 @@
             font-size: 26px;
             line-height: 1;
             cursor: pointer;
+            transition: background 0.18s ease, transform 0.18s ease;
         }
 
-        .qr-close:hover {
+        .alpha-close:hover,
+        .success-close:hover {
             background: rgba(20, 45, 70, 0.14);
+            transform: scale(1.04);
         }
 
-        .qr-code {
-            width: min(72vw, 260px);
-            margin: 16px auto 14px;
-            border-radius: 18px;
-            background: #fff;
-            box-shadow: 0 12px 30px rgba(16, 34, 55, 0.1);
+        .alpha-icon-wrap,
+        .success-icon-wrap {
+            width: 78px;
+            height: 78px;
+            margin: 4px auto 16px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(247, 250, 255, 0.98), rgba(232, 239, 249, 0.95));
+            display: grid;
+            place-items: center;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                0 10px 28px rgba(16, 34, 55, 0.08);
         }
 
-        .qr-title {
+        .alpha-icon,
+        .success-icon {
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        .alpha-title,
+        .success-title {
             margin: 0;
             color: #12253a;
-            font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+            font-size: clamp(1.3rem, 2.6vw, 1.9rem);
             font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
-        .qr-text {
-            margin: 8px 0 0;
-            color: #3c546d;
+        .alpha-text,
+        .success-text {
+            margin: 10px 0 0;
+            color: #50657d;
             font-size: 0.98rem;
-            line-height: 1.5;
+            line-height: 1.55;
+        }
+
+        .alpha-form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .alpha-input {
+            width: 100%;
+            border: 1px solid rgba(32, 63, 94, 0.12);
+            background: rgba(255, 255, 255, 0.92);
+            color: #12253a;
+            border-radius: 18px;
+            padding: 15px 16px;
+            outline: none;
+            font-size: 16px;
+            transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+            box-shadow: inset 0 1px 2px rgba(16, 34, 55, 0.02);
+        }
+
+        .alpha-input::placeholder {
+            color: #8a9aab;
+        }
+
+        .alpha-input:focus {
+            border-color: rgba(36, 99, 235, 0.35);
+            box-shadow: 0 0 0 4px rgba(36, 99, 235, 0.12);
+        }
+
+        .alpha-submit,
+        .success-button {
+            border: 0;
+            border-radius: 18px;
+            padding: 16px 18px;
+            background: linear-gradient(180deg, #2f80ff 0%, #1d63e6 100%);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 12px 28px rgba(29, 99, 230, 0.26);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+        }
+
+        .alpha-submit:hover,
+        .success-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 34px rgba(29, 99, 230, 0.3);
+        }
+
+        .alpha-submit:disabled {
+            opacity: 0.72;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 8px 20px rgba(29, 99, 230, 0.18);
+        }
+
+        .alpha-message {
+            min-height: 22px;
+            margin: 2px 0 0;
+            color: #245fd5;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .alpha-note {
+            margin: 0;
+            color: #7a8898;
+            font-size: 12.5px;
+            line-height: 1.45;
+        }
+
+        .success-actions {
+            margin-top: 20px;
         }
 
         @media (max-width: 820px) {
@@ -316,14 +430,23 @@
                 display: block;
             }
 
-            .qr-panel {
+            .alpha-panel {
                 width: min(92vw, 360px);
                 padding: 24px 18px 18px;
-                border-radius: 24px;
+                border-radius: 26px;
             }
 
-            .qr-code {
-                width: min(74vw, 240px);
+            .success-panel {
+                width: min(92vw, 330px);
+                padding: 24px 18px 18px;
+                border-radius: 26px;
+            }
+
+            .alpha-icon-wrap,
+            .success-icon-wrap {
+                width: 72px;
+                height: 72px;
+                border-radius: 22px;
             }
         }
 
@@ -396,46 +519,182 @@
             <img class="mobile-presented" src="img/presentedby.png" alt="presented by PawFun" />
         </section>
 
-        <div class="qr-modal" id="qrModal" hidden>
-            <div class="qr-backdrop"></div>
-            <div class="qr-panel" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
-                <button class="qr-close" id="qrClose" type="button" aria-label="Close">×</button>
-                <img class="qr-code" src="img/game_website_qr_code.gif" alt="Alpha Access QR Code" />
-                <h2 class="qr-title" id="qrTitle">Get Alpha Access</h2>
-                <p class="qr-text">请扫码加入 Alpha Access。</p>
+        <!-- Email Modal -->
+        <div class="alpha-modal" id="alphaModal" hidden>
+            <div class="alpha-backdrop"></div>
+
+            <div class="alpha-panel" role="dialog" aria-modal="true" aria-labelledby="alphaTitle">
+                <button class="alpha-close" id="alphaClose" type="button" aria-label="Close">×</button>
+
+                <div class="alpha-icon-wrap" aria-hidden="true">
+                    <div class="alpha-icon">✦</div>
+                </div>
+
+                <h2 class="alpha-title" id="alphaTitle">Get Alpha Access</h2>
+                <p class="alpha-text">Leave your email to begin a magical journey.</p>
+
+                <form
+                    id="alphaForm"
+                    class="alpha-form"
+                    action="https://docs.google.com/forms/d/e/1FAIpQLSegQdkkGsGYiipVcXXYbCAltDMiH5I3odgPdHGCEXvcDa9SSw/formResponse"
+                    method="POST"
+                    novalidate
+                >
+                    <input
+                        class="alpha-input"
+                        id="alphaEmail"
+                        name="entry.1741503393"
+                        type="email"
+                        inputmode="email"
+                        autocomplete="email"
+                        placeholder="name@example.com"
+                        required
+                        maxlength="120"
+                        aria-label="Email address"
+                    />
+
+                    <button class="alpha-submit" id="alphaSubmit" type="submit">
+                        Pre-register Alpha Access
+                    </button>
+
+                    <p class="alpha-message" id="alphaMessage" aria-live="polite"></p>
+                    <p class="alpha-note">We’ll only use your email for Alpha Access updates.</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div class="success-modal" id="successModal" hidden>
+            <div class="success-backdrop"></div>
+
+            <div class="success-panel" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+                <button class="success-close" id="successClose" type="button" aria-label="Close">×</button>
+
+                <div class="success-icon-wrap" aria-hidden="true">
+                    <div class="success-icon">✓</div>
+                </div>
+
+                <h2 class="success-title" id="successTitle">Success!</h2>
+                <p class="success-text">We’ll send Alpha Access to your email.</p>
+
+                <div class="success-actions">
+                    <button class="success-button" id="successButton" type="button">Close</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        const qrModal = document.getElementById("qrModal");
-        const qrClose = document.getElementById("qrClose");
+        const alphaModal = document.getElementById("alphaModal");
+        const successModal = document.getElementById("successModal");
+
+        const alphaClose = document.getElementById("alphaClose");
+        const successClose = document.getElementById("successClose");
+        const successButton = document.getElementById("successButton");
+
         const desktopCta = document.getElementById("desktopCta");
         const mobileCta = document.getElementById("mobileCta");
 
-        function openQrModal() {
-            qrModal.hidden = false;
+        const alphaForm = document.getElementById("alphaForm");
+        const alphaEmail = document.getElementById("alphaEmail");
+        const alphaSubmit = document.getElementById("alphaSubmit");
+        const alphaMessage = document.getElementById("alphaMessage");
+
+        function openAlphaModal() {
+            successModal.hidden = true;
+            alphaModal.hidden = false;
             document.body.classList.add("modal-open");
+
+            setTimeout(() => {
+                alphaEmail.focus();
+            }, 50);
         }
 
-        function closeQrModal() {
-            qrModal.hidden = true;
+        function closeAlphaModal() {
+            alphaModal.hidden = true;
+            alphaMessage.textContent = "";
+            alphaSubmit.disabled = false;
+            alphaSubmit.textContent = "Pre-register Alpha Access";
+
+            if (successModal.hidden) {
+                document.body.classList.remove("modal-open");
+            }
+        }
+
+        function openSuccessModal() {
+            alphaModal.hidden = true;
+            successModal.hidden = false;
+            document.body.classList.add("modal-open");
+
+            setTimeout(() => {
+                successButton.focus();
+            }, 50);
+        }
+
+        function closeSuccessModal() {
+            successModal.hidden = true;
             document.body.classList.remove("modal-open");
         }
 
-        desktopCta.addEventListener("click", openQrModal);
-        mobileCta.addEventListener("click", openQrModal);
-        qrClose.addEventListener("click", closeQrModal);
+        desktopCta.addEventListener("click", openAlphaModal);
+        mobileCta.addEventListener("click", openAlphaModal);
 
-        qrModal.addEventListener("click", function (event) {
-            if (event.target === qrModal || event.target.classList.contains("qr-backdrop")) {
-                closeQrModal();
+        alphaClose.addEventListener("click", closeAlphaModal);
+        successClose.addEventListener("click", closeSuccessModal);
+        successButton.addEventListener("click", closeSuccessModal);
+
+        alphaModal.addEventListener("click", function (event) {
+            if (event.target === alphaModal || event.target.classList.contains("alpha-backdrop")) {
+                closeAlphaModal();
+            }
+        });
+
+        successModal.addEventListener("click", function (event) {
+            if (event.target === successModal || event.target.classList.contains("success-backdrop")) {
+                closeSuccessModal();
             }
         });
 
         document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape" && !qrModal.hidden) {
-                closeQrModal();
+            if (event.key === "Escape") {
+                if (!successModal.hidden) {
+                    closeSuccessModal();
+                } else if (!alphaModal.hidden) {
+                    closeAlphaModal();
+                }
+            }
+        });
+
+        alphaForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            if (!alphaEmail.checkValidity()) {
+                alphaEmail.reportValidity();
+                return;
+            }
+
+            alphaSubmit.disabled = true;
+            alphaSubmit.textContent = "Submitting...";
+            alphaMessage.textContent = "";
+
+            try {
+                const formData = new FormData(alphaForm);
+
+                await fetch(alphaForm.action, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: formData
+                });
+
+                alphaForm.reset();
+                alphaSubmit.textContent = "Pre-register Alpha Access";
+                alphaSubmit.disabled = false;
+
+                openSuccessModal();
+            } catch (error) {
+                alphaMessage.textContent = "Something went wrong. Please try again.";
+                alphaSubmit.textContent = "Pre-register Alpha Access";
+                alphaSubmit.disabled = false;
             }
         });
     </script>
