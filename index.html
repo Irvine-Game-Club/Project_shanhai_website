@@ -63,7 +63,7 @@
             height: clamp(500px, 73vh, 900px);
             width: auto;
             max-width: none;
-            transform: translateY(-50%) scaleX(-1);
+            transform: translateY(-50%);
             transform-origin: center center;
             z-index: 3;
         }
@@ -177,10 +177,11 @@
 
         .mobile-character {
             position: absolute;
-            right: -0.8%;
+            left: 50%;
             top: 40.2%;
             width: 47%;
             max-width: none;
+            transform: translateX(-50%);
             z-index: 4;
         }
 
@@ -458,8 +459,9 @@
 
             .mobile-character {
                 width: 48.2%;
-                right: -1.5%;
+                left: 50%;
                 top: 40.2%;
+                transform: translateX(-50%);
             }
 
             .mobile-cta {
@@ -487,7 +489,7 @@
 <body>
     <div class="page">
         <section class="desktop-stage" aria-label="Desktop layout">
-            <img class="desktop-character" src="img/xianhe_web.gif" alt="仙鹤角色" />
+            <img class="desktop-character" src="img/npc_cat_idle.gif" alt="仙鹤角色" />
 
             <div class="desktop-panel">
                 <img class="desktop-title" src="img/title.png" alt="山海事务管理局 Mountain &amp; Sea Agency" />
@@ -506,7 +508,7 @@
 
         <section class="mobile-stage" aria-label="Mobile layout">
             <img class="mobile-title" src="img/title.png" alt="山海事务管理局 Mountain &amp; Sea Agency" />
-            <img class="mobile-character" src="img/xianhe_web.gif" alt="仙鹤角色" />
+            <img class="mobile-character" src="img/npc_cat_idle.gif" alt="仙鹤角色" />
 
             <button class="mobile-cta" id="mobileCta" type="button" aria-label="Get Alpha Access">
                 <span class="mobile-cta-inner">
@@ -527,7 +529,7 @@
                 <button class="alpha-close" id="alphaClose" type="button" aria-label="Close">×</button>
 
                 <div class="alpha-icon-wrap" aria-hidden="true">
-                    <div class="alpha-icon">✦</div>
+                    <img class="alpha-icon" src="img/no_008.png" alt="图标" />
                 </div>
 
                 <h2 class="alpha-title" id="alphaTitle">Get Alpha Access</h2>
@@ -575,7 +577,7 @@
                 </div>
 
                 <h2 class="success-title" id="successTitle">Success!</h2>
-                <p class="success-text">We’ll send Alpha Access to your email.</p>
+                <p class="success-text">You're on the list! We'll email you Alpha Access when the demo is ready.</p>
 
                 <div class="success-actions">
                     <button class="success-button" id="successButton" type="button">Close</button>
